@@ -16,7 +16,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { username, password } = req.body;
         console.log(username);
-        const result = yield users.findOne({ username: "suman" });
+        const result = yield users.findOne({ username: username });
         if (!result) {
             return res.status(404).json({ msg: "no user found with the username " });
         }
