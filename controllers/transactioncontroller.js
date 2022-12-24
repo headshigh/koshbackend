@@ -56,7 +56,14 @@ const getalltransaction = (req, res) => __awaiter(void 0, void 0, void 0, functi
         else {
             result = Transaction.find({});
         }
-        const count = yield Transaction.countDocuments({});
+        if (req.query.transactionby) {
+            var count = yield Transaction.countDocuments({
+                transactionby: req.query.transactionby,
+            });
+        }
+        else {
+            count = yield Transaction.countDocuments({});
+        }
         console.log(count);
         const result1 = yield result.sort("-createdAt").skip(skip).limit(limit);
         var x = 0;
