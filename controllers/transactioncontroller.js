@@ -59,6 +59,7 @@ const getalltransaction = (req, res) => __awaiter(void 0, void 0, void 0, functi
         else {
             result = Transaction.find({});
         }
+        const count = await Transaction.countDocuments({});
         const result1 = yield result.sort("-createdAt").skip(skip).limit(limit);
         var x = 0;
         const forbalance = yield Transaction.aggregate([
@@ -86,6 +87,7 @@ const getalltransaction = (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(200).json({
             msg: result1,
             balance: x,
+            count:count,
         });
     }
     catch (err) {
