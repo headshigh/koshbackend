@@ -95,6 +95,12 @@ const getalltransaction = (req, res) => __awaiter(void 0, void 0, void 0, functi
         console.log(err);
     }
 });
+const deletetransaction = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { transactionid } = req.query;
+    console.log(transactionid);
+    res.status(200).json(transactionid);
+    yield Transaction.deleteOne({ _id: transactionid });
+});
 const createtransaction = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //type of req
     const { nameofitem, totalprice, remarks, transactionby, transactiontype } = req.body;
@@ -151,4 +157,9 @@ const createtransaction = (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(500).json({ err: err });
     }
 });
-module.exports = { createtransaction, getalltransaction, getbalance };
+module.exports = {
+    createtransaction,
+    getalltransaction,
+    getbalance,
+    deletetransaction,
+};
